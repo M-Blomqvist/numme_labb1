@@ -24,6 +24,18 @@ found_roots = fixpunkt(guess, theta, 1e-10);
 f_roots = f(found_roots);
 plot(found_roots, f_roots, 'r *');
 
+%Med rötterna till funktionen hittade i c) kan vi bevisa att theta
+%omöjligen konvergerar till de två missade rötterna
+%thetas derivata
+theta_d = @(x) x.*(2/9)-cos((x.*3)+2)+1;
+roots = [-0.720353075847192,0.468286405224616,1.617302479860036,1.993885987467251];
+for i = 1:size(roots,2)
+    x = roots(i);
+    if theta_d(x) > 1
+        fprintf('Cannot use theta to find root %d \n', x);
+    end
+end
+
 %Bestäm den största och den minsta roten till ekvationen med Newtons metod.
 fprintf('\n Newton! \n');
 guess = [-0.75, 0.5, 1.6, 2];
