@@ -30,9 +30,10 @@ plot(found_roots, f_roots, 'r *');
 theta_d = @(x) x.*(2/9)-cos((x.*3)+2)+1;
 roots = [-0.720353075847192,0.468286405224616,1.617302479860036,1.993885987467251];
 for i = 1:size(roots,2)
-    x = roots(i);
-    if theta_d(x) > 1
-        fprintf('Cannot use theta to find root %d \n', x);
+    r = roots(i);
+    theta_d_r = theta_d(r)
+    if theta_d_r > 1
+        fprintf('Cannot use theta to find root %d', r);
     end
 end
 

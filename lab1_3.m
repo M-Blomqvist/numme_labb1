@@ -27,3 +27,13 @@ results = fixpunkt(guesses, theta, 1e-12);
 plot(results(1,2), results(2,2), 'r *');
 plot(results(1,1), results(2,1), 'g *');
 hold off;
+
+%garantera att det var kvadratisk konvergens genom att se om J(r) är
+%icke-singulär, d.v.s. determinanten är inte 0 (här måste vi se upp med float errors)
+for i = 1:size(results,2)
+    r = (results(:,i));
+    det_j_r = det(Jacobi(r))
+    if det_j_r < 1e-14 && det_j_r > -1e-14
+        fprintf('icke-kvadratisk lösning för %d', r);
+    end
+end
